@@ -1,17 +1,87 @@
 from django.shortcuts import render
 
-# Two example views. Change or delete as necessary.
-def home(request):
+def etas(request):
 
     context = {
-        'example_context_variable': 'Change me.',
+        'stops': [
+            {
+                'name': 'Richmond', 
+                'schedules': [
+                    {
+                        'destination': 'Warm Springs', 
+                        'minutes': '16', 
+                        'arrival_time': '10:15 pm',
+                    },
+                    {
+                        'destination': 'Warm Springs', 
+                        'minutes': '16', 
+                        'arrival_time': '10:15 pm',
+                    },
+                    {
+                        'destination': 'Warm Springs', 
+                        'minutes': '16', 
+                        'arrival_time': '10:15 pm',
+                    },
+                    {
+                        'destination': 'Warm Springs', 
+                        'minutes': '16', 
+                        'arrival_time': '10:15 pm',
+                    },
+                    {
+                        'destination': 'Warm Springs', 
+                        'minutes': '16', 
+                        'arrival_time': '10:15 pm',
+                    },
+                    {
+                        'destination': 'Warm Springs', 
+                        'minutes': '16', 
+                        'arrival_time': '10:15 pm',
+                    },
+                ],
+            },
+            {
+                'name': 'Richmond', 
+                'schedules': [
+                    {
+                        'destination': 'Warm Springs', 
+                        'minutes': '16', 
+                        'arrival_time': '10:15 pm',
+                    }
+                ],
+            },
+            {
+                'name': 'Richmond', 
+                'schedules': [
+                    {
+                        'destination': 'Warm Springs', 
+                        'minutes': '16', 
+                        'arrival_time': '10:15 pm',
+                    }
+                ],
+            },
+            {
+                'name': 'Richmond', 
+                'schedules': [
+                    {
+                        'destination': 'Warm Springs', 
+                        'minutes': '16', 
+                        'arrival_time': '10:15 pm',
+                    }
+                ],
+            },
+            {
+                'name': 'Richmond', 
+                'schedules': [
+                    {
+                        'destination': 'Warm Springs', 
+                        'minutes': '16', 
+                        'arrival_time': '10:15 pm',
+                    }
+                ],
+            },
+        ],
     }
 
-    return render(request, 'pages/home.html', context)
+    return render(request, 'pages/base_etas.html', context)
 
-def about(request):
-    context = {
-    }
-
-    return render(request, 'pages/about.html', context)
 

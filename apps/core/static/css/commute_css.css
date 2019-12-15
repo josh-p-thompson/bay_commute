@@ -27,6 +27,7 @@ p {
 
 /* schedule styling */
 
+/* row displaying stop name */
 .stop-name {
     font-size: 1.4em;
     padding-top: .25em;
@@ -36,16 +37,22 @@ p {
     border-color: #111;
 }
 
+/* set subway icon color */
 .fa-subway {
     color: #757E71;
-
 }
 
-.schedule {
-    border-bottom: 1px dotted; 
-    border-color: #111;
-}
-
+/* make font much smaller for minutes label in eta row */
 .minutes {
     font-size: .25em;
 }
+
+/* sets format for hr element between etas */
+.schedule-divider {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    border: 0;
+    border-top: 1px dotted #111;
+  }
