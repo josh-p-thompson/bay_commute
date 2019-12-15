@@ -1,0 +1,51 @@
+/* custom css for base */
+
+/* major styling */
+body {
+    color: #f5eef1;
+    background-color: #222222;
+    font-family: 'Maitree', serif;
+}
+
+p {
+    margin: 0;
+}
+
+
+/* navbar styling */
+
+.navbar-custom{
+    background-color: #111;
+}
+
+.navbar-brand,
+.navbar-nav a {
+    font-family: 'Karla', sans-serif;
+    color: #f5eef1;
+}
+
+
+/* schedule styling */
+
+.stop-name {
+    font-size: 1.4em;
+    padding-top: .25em;
+    padding-bottom: .25em;
+    border-top: 1px solid; 
+    border-bottom: 1px solid;
+    border-color: #111;
+}
+
+.fa-subway {
+    color: #757E71;
+
+}
+
+.schedule {
+    border-bottom: 1px dotted; 
+    border-color: #111;
+}
+
+.minutes {
+    font-size: .25em;
+}
