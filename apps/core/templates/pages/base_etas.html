@@ -2,21 +2,23 @@
 
 {% block main %}
 <!-- schedules -->
-{% for stop in stops %}
+{% for abbr, schedules in stops.items %}
 <div class='row stop-name'>
     <div class='col'>
-        <p><i class="fas fa-subway icon-4x"></i> {{ stop.name }}</p>
+        <p><i class="fas fa-subway icon-4x"></i> {{ schedules.0.station_name }}</p>
     </div>
 </div>
-{% for schedule in stop.schedules %}
+{% for schedule in schedules %}
 <div class='row schedule'>
     <div class='col my-auto'>
-        <i class="fas fa-arrow-alt-circle-right"></i> {{ schedule.destination }}
+        <i class="fas fa-arrow-alt-circle-right"></i> {{ schedule.destination_name }}
     </div>
     <div class='col text-right'>
         <div class='row no-gutters'>
             <div class='col'>
-                <p>{{ schedule.minutes }} min</p>
+                <p>
+                    {{ schedule.arrival_minutes }} {% if schedule.arrival_minutes != "Leaving" %}min{% endif %}
+                </p>
             </div>
         </div>
         <div class='row no-gutters'>
