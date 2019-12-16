@@ -65,61 +65,62 @@ def estimate_arrival(update_datetime, arrival_minutes):
     return update_datetime + timedelta(minutes=arrival)
 
 def stations(): 
-    return [{'abbr': 'LAKE', 'name': 'Lake Merritt'},
-            {'abbr': 'FTVL', 'name': 'Fruitvale'},
-            {'abbr': 'COLS', 'name': 'Coliseum'},
-            {'abbr': 'SANL', 'name': 'San Leandro'},
-            {'abbr': 'BAYF', 'name': 'Bay Fair'},
-            {'abbr': 'HAYW', 'name': 'Hayward'},
-            {'abbr': 'SHAY', 'name': 'South Hayward'},
-            {'abbr': 'UCTY', 'name': 'Union City'},
-            {'abbr': 'FRMT', 'name': 'Fremont'},
-            {'abbr': 'ROCK', 'name': 'Rockridge'},
-            {'abbr': 'ORIN', 'name': 'Orinda'},
-            {'abbr': 'LAFY', 'name': 'Lafayette'},
-            {'abbr': 'WCRK', 'name': 'Walnut Creek'},
-            {'abbr': 'PHIL', 'name': 'Pleasant Hill/Contra Costa Centre'},
-            {'abbr': 'CONC', 'name': 'Concord'},
-            {'abbr': 'NCON', 'name': 'North Concord/Martinez'},
-            {'abbr': 'PITT', 'name': 'Pittsburg/Bay Point'},
-            {'abbr': 'PCTR', 'name': 'Pittsburg Center'},
-            {'abbr': 'ANTC', 'name': 'Antioch'},
-            {'abbr': '12TH', 'name': '12th St. Oakland City Center'},
-            {'abbr': '19TH', 'name': '19th St. Oakland'},
-            {'abbr': 'MCAR', 'name': 'MacArthur'},
-            {'abbr': 'CAST', 'name': 'Castro Valley'},
-            {'abbr': 'WDUB', 'name': 'West Dublin/Pleasanton'},
-            {'abbr': 'DUBL', 'name': 'Dublin/Pleasanton'},
-            {'abbr': 'WOAK', 'name': 'West Oakland'},
-            {'abbr': 'EMBR', 'name': 'Embarcadero'},
-            {'abbr': 'MONT', 'name': 'Montgomery St.'},
-            {'abbr': 'POWL', 'name': 'Powell St.'},
-            {'abbr': 'CIVC', 'name': 'Civic Center/UN Plaza'},
+    return [{'abbr': '12TH', 'name': '12th St. Oakland City Center'},
             {'abbr': '16TH', 'name': '16th St. Mission'},
+            {'abbr': '19TH', 'name': '19th St. Oakland'},
             {'abbr': '24TH', 'name': '24th St. Mission'},
-            {'abbr': 'GLEN', 'name': 'Glen Park'},
-            {'abbr': 'BALB', 'name': 'Balboa Park'},
-            {'abbr': 'DALY', 'name': 'Daly City'},
+            {'abbr': 'ANTC', 'name': 'Antioch'},
             {'abbr': 'ASHB', 'name': 'Ashby'},
+            {'abbr': 'BALB', 'name': 'Balboa Park'},
+            {'abbr': 'BAYF', 'name': 'Bay Fair'},
+            {'abbr': 'CAST', 'name': 'Castro Valley'},
+            {'abbr': 'CIVC', 'name': 'Civic Center/UN Plaza'},
+            {'abbr': 'COLS', 'name': 'Coliseum'},
+            {'abbr': 'COLM', 'name': 'Colma'},
+            {'abbr': 'CONC', 'name': 'Concord'},
+            {'abbr': 'DALY', 'name': 'Daly City'},
             {'abbr': 'DBRK', 'name': 'Downtown Berkeley'},
-            {'abbr': 'NBRK', 'name': 'North Berkeley'},
+            {'abbr': 'DUBL', 'name': 'Dublin/Pleasanton'},
             {'abbr': 'PLZA', 'name': 'El Cerrito Plaza'},
             {'abbr': 'DELN', 'name': 'El Cerrito del Norte'},
-            {'abbr': 'RICH', 'name': 'Richmond'},
-            {'abbr': 'WARM', 'name': 'Warm Springs/South Fremont'},
-            {'abbr': 'COLM', 'name': 'Colma'},
-            {'abbr': 'SSAN', 'name': 'South San Francisco'},
-            {'abbr': 'SBRN', 'name': 'San Bruno'},
+            {'abbr': 'EMBR', 'name': 'Embarcadero'},
+            {'abbr': 'FRMT', 'name': 'Fremont'},
+            {'abbr': 'FTVL', 'name': 'Fruitvale'},
+            {'abbr': 'GLEN', 'name': 'Glen Park'},
+            {'abbr': 'HAYW', 'name': 'Hayward'},
+            {'abbr': 'LAFY', 'name': 'Lafayette'},
+            {'abbr': 'LAKE', 'name': 'Lake Merritt'},
+            {'abbr': 'MCAR', 'name': 'MacArthur'},
             {'abbr': 'MLBR', 'name': 'Millbrae'},
-            {'abbr': 'SFIA', 'name': "San Francisco Int'l Airport"}]
+            {'abbr': 'MONT', 'name': 'Montgomery St.'},
+            {'abbr': 'NBRK', 'name': 'North Berkeley'},
+            {'abbr': 'NCON', 'name': 'North Concord/Martinez'},
+            {'abbr': 'ORIN', 'name': 'Orinda'},
+            {'abbr': 'PCTR', 'name': 'Pittsburg Center'},
+            {'abbr': 'PITT', 'name': 'Pittsburg/Bay Point'},
+            {'abbr': 'PHIL', 'name': 'Pleasant Hill/Contra Costa Centre'},
+            {'abbr': 'POWL', 'name': 'Powell St.'},
+            {'abbr': 'RICH', 'name': 'Richmond'},
+            {'abbr': 'ROCK', 'name': 'Rockridge'},
+            {'abbr': 'SBRN', 'name': 'San Bruno'},
+            {'abbr': 'SFIA', 'name': "San Francisco Int'l Airport"},
+            {'abbr': 'SANL', 'name': 'San Leandro'},
+            {'abbr': 'SHAY', 'name': 'South Hayward'},
+            {'abbr': 'SSAN', 'name': 'South San Francisco'},
+            {'abbr': 'UCTY', 'name': 'Union City'},
+            {'abbr': 'WCRK', 'name': 'Walnut Creek'},
+            {'abbr': 'WARM', 'name': 'Warm Springs/South Fremont'},
+            {'abbr': 'WDUB', 'name': 'West Dublin/Pleasanton'},
+            {'abbr': 'WOAK', 'name': 'West Oakland'}]      
 
 def station_dict(): 
-    return {station['abbr']: station['name'] for station in stations()}
-
+    station_dict = {station['abbr']: station['name'] for station in stations()}
+    # add sorting
+    return {k: v for k, v in sorted(station_dict.items(), key=lambda item: item[1])}
 
 def main(): 
-    arrivals = station_arrivals()
-    pprint.pprint(arrivals)
+    sorted_stations = sorted(stations(), key=lambda k: k['name'])
+    pprint.pprint(sorted_stations)
 
 
 if __name__ == '__main__': 

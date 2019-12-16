@@ -1,13 +1,30 @@
 {% extends "base.html" %}
 
 {% block main %}
-<!-- schedules -->
+<!-- station -->
 {% for abbr, schedules in stops.items %}
 <div class='row stop-name'>
     <div class='col'>
-        <p><i class="fas fa-subway icon-4x"></i> {{ schedules.0.station_name }}</p>
+        <p data-toggle="modal" data-target="#changeStation"><i class="fas fa-subway icon-4x"></i> {{ schedules.0.station_name }}</p>
     </div>
 </div>
+
+<!-- modal for switching station -->
+<div class="modal fade" id="changeStation" tabindex="-1" role="dialog" aria-labelledby="changeStationLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="list-group list-group-flush">
+                    {% for abbr, name in stations.items %}
+                    <a href="/{{ abbr }}" class="list-group-item list-item-station-option list-group-item-action {% if schedules.0.station_name == name %}active{% endif %}">{{ name }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- schedules -->
 {% for schedule in schedules %}
 <div class='row schedule'>
     <div class='col my-auto'>
