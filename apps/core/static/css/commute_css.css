@@ -11,7 +11,6 @@ p {
     margin: 0;
 }
 
-
 /* navbar styling */
 
 .navbar-custom{
@@ -63,8 +62,8 @@ p {
 }
 
 /* make font much smaller for minutes label in eta row */
-.minutes {
-    font-size: .25em;
+.arrival-time {
+    font-size: .75em;
 }
 
 /* sets format for hr element between etas */
