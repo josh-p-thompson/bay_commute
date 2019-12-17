@@ -64,7 +64,9 @@ hr {
 
 .schedule-row-collapsed {
     font-size: 1.25em; 
-    border-top: 1px solid #222222;
+    border-top: 1px solid #111;
+    padding-top: .3em; 
+    padding-bottom: .3em;
 }
 
 /* style modal show station options */
