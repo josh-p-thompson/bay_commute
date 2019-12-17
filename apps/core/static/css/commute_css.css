@@ -11,6 +11,11 @@ p {
     margin: 0;
 }
 
+hr {
+    margin-left: -10%; 
+    margin-right: -10%
+}
+
 /* navbar styling */
 
 .navbar-custom{
@@ -28,21 +33,38 @@ p {
 }
 
 
-/* schedule styling */
+/* content styling */
 
-/* row displaying stop name */
-.stop-name {
-    font-size: 1.4em;
-    padding-top: .25em;
-    padding-bottom: .25em;
-    border-top: 1px solid; 
-    border-bottom: 1px solid;
-    border-color: #111;
+/* row displaying station name */
+.station-name-row {
+    font-size: 1.5em;
+    padding-top: .4em;
+    padding-bottom: .4em;
+}
+
+.station-name-row:hover{
+    color: #757E71;
+    cursor: pointer;
 }
 
 /* set subway icon color */
 .fa-subway {
     color: #757E71;
+}
+
+/* row displaying first schedule for each station */
+.schedule-row {
+    font-size: 1.25em;
+    height: 4em;
+}
+
+.schedule-row:hover{
+    color: #757E71;
+}
+
+.schedule-row-collapsed {
+    font-size: 1.25em; 
+    border-top: 1px solid #222222;
 }
 
 /* style modal show station options */
@@ -54,24 +76,30 @@ p {
     padding: 0;
 }
 
+/* styling for actual etas */
 .list-item-station-option {
     color: #f5eef1;
     background-color: #222222;
     font-family: 'Maitree', serif;
-    padding: .25 em;
+    padding-top: .25em;
+}
+
+/* font larger for arrival minutes */
+.arrival-minutes {
+    font-size: 1.4em;
 }
 
 /* make font much smaller for minutes label in eta row */
-.arrival-time {
-    font-size: .75em;
+.minutes-label {
+    font-size: .6em;
 }
 
-/* sets format for hr element between etas */
+/* sets format for hr element between rows */
 .schedule-divider {
     margin-top: 0;
     margin-bottom: 0;
     padding-left: 0;
     padding-right: 0;
     border: 0;
-    border-top: 1px dotted #111;
+    border-top: 1px solid #111;
   }

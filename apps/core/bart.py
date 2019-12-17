@@ -47,7 +47,7 @@ def station_arrivals(stn_abbr="ALL"):
                     'destination_abbr': destination['abbreviation'],
                     'arrival_minutes': train['minutes'],
                     'arrival_datetime': estimate_arrival(update_datetime, train['minutes']), 
-                    'arrival_time': estimate_arrival(update_datetime, train['minutes']).strftime('%-I:%M %p'), 
+                    'arrival_time': estimate_arrival(update_datetime, train['minutes']).strftime('%-I:%M'), 
                     'platform': train['platform'],
                     'direction': train['direction'],
                     'length': train['length'],
@@ -119,8 +119,8 @@ def station_dict():
     return {k: v for k, v in sorted(station_dict.items(), key=lambda item: item[1])}
 
 def main(): 
-    sorted_stations = sorted(stations(), key=lambda k: k['name'])
-    pprint.pprint(sorted_stations)
+    arrivals = station_arrivals_nested()
+    pprint.pprint(arrivals)
 
 
 if __name__ == '__main__': 
