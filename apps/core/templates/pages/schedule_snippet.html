@@ -1,0 +1,18 @@
+<!-- actual schedules -->
+<div class='row no-gutters arrival-list-row'>
+    <div class='col my-auto'>
+        <i class="fas fa-arrow-alt-circle-right" style="color:{{ schedule.hexcolor }};"></i> {{ schedule.destination_name }}
+    </div>
+    <div class='col-auto my-auto text-center'>
+        <div class='row'>
+            <div class='col'>
+                <div class='arrival-minutes' {% if schedule.arrival_minutes == "Leaving" %}style='font-size:1em;'{% endif %}>
+                    {{ schedule.arrival_minutes }}
+                </div>
+                <div class='minutes-label'>
+                    {% if schedule.arrival_minutes != "Leaving" %}minutes{% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

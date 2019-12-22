@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block main %}
+
+<div class='row justify-content-center station-card-row'>
+    
+    {% for abbr, schedules in stops.items %}
+        <div class='col-lg-6 p-small station-col'>
+        <div class="card rounded-0 station-card h-100 border-right-0 border-left-0" >
+
+            <!-- header -->
+            <div class="card-header station-card-header">
+                <div data-toggle="modal" data-target="#changeStation">
+                    <i class="fas fa-subway icon-4x"></i> 
+                    <span class='overflow-hidden'>&nbsp;{{ schedules.0.station_name }}</span>
+                </div>
+            </div>
+
+            <!-- modal for switching station -->
+            <div class="modal fade" id="changeStation" tabindex="-1" role="dialog" aria-labelledby="changeStationLabel" aria-hidden="true">
+                <div class="modal-dialog modal-sm" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div class="list-group list-group-flush">
+                                {% for abbr, name in stations.items %}
+                                <a href="/{{ abbr }}" class="list-group-item list-item-station-option list-group-item-action {% if schedules.0.station_name == name %}active{% endif %}">{{ name }}</a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- schedules -->
+            <ul class="list-group list-group-flush list-group-schedules">
+            {% for schedule in schedules %}
+
+                <!-- set wrap for collapse -->
+                {% ifchanged schedule.destination_name %}
+                <a data-toggle="collapse" href='#collapse-{{ schedules.0.station_abbr }}-to-{{ schedule.destination_abbr }}' role="button" aria-expanded="false" aria-controls="collapse-{{ schedules.0.station_abbr }}-to-{{ schedule.destination_abbr }}" class='text-reset text-decoration-none' >
+                    <li class="list-group-item arrival-list-group-item linked">
+                    {% include 'pages/schedule_snippet.html' %}
+                    </li>
+                </a>
+                {% else %}
+                <div class='collapse' id='collapse-{{ schedules.0.station_abbr }}-to-{{ schedule.destination_abbr }}'>
+                    <li class="list-group-item arrival-list-group-item collapsed">
+                    {% include 'pages/schedule_snippet.html' %}
+                    </li>
+                </div>
+                {% endifchanged %}
+            {% endfor %}
+            </ul>
+        </div>
+            
+        </div>
+    {% endfor %}
+</div>
+{% endblock main %}

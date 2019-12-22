@@ -1,23 +1,33 @@
 /* custom css for base */
 
-/* major styling */
+/* offline font usage */
+/* @font-face {
+    font-family: Karla;
+    src: url('../fonts/google-fonts/Karla/Karla-Bold.ttf');
+}
+@font-face {
+    font-family: Maitree;
+    src: url('../fonts/google-fonts/Maitree/Maitree-Medium.ttf');
+} */
+
+
+/* GLOBAL */
 body {
     color: #f5eef1;
-    background-color: #222222;
+    background-color: #111;
     font-family: 'Maitree', serif;
 }
 
-p {
-    margin: 0;
-}
+.collapsing {
+    -webkit-transition: height .2s ease;
+    -o-transition: height .2s ease;
+    transition: height .2s ease;
+  }
 
-hr {
-    margin-left: -10%; 
-    margin-right: -10%
-}
+  
 
-/* navbar styling */
 
+/* NAVBAR */   
 .navbar-custom{
     background-color: #111;
 }
@@ -28,62 +38,88 @@ hr {
     color: #f5eef1;
 }
 
-.fa-search {
-    color: #f5eef1;
-}
+/* CONTENT */
 
-
-/* content styling */
-
-/* row displaying station name */
-.station-name-row {
-    font-size: 1.5em;
-    padding-top: .4em;
-    padding-bottom: .4em;
-}
-
-.station-name-row:hover{
-    color: #757E71;
-    cursor: pointer;
-}
-
-/* set subway icon color */
-.fa-subway {
-    color: #757E71;
-}
-
-/* row displaying first schedule for each station */
-.schedule-row {
-    font-size: 1.25em;
-    height: 4em;
-}
-
-.schedule-row:hover{
-    color: #757E71;
-}
-
-.schedule-row-collapsed {
-    font-size: 1.25em; 
-    border-top: 1px solid #111;
-    padding-top: .3em; 
-    padding-bottom: .3em;
-}
-
-/* style modal show station options */
-.modal-content {
+/* MODAL */
+.list-item-station-option {
     background-color: #222222;
+    color: #f5eef1;
 }
 
 .modal-body {
     padding: 0;
 }
 
-/* styling for actual etas */
-.list-item-station-option {
-    color: #f5eef1;
+/* CARD */
+
+/* custom padding class */
+.p-small {
+    padding: .07rem;
+}
+
+/* padding for left and right of window */
+.station-card-row {
+    padding-left: 1rem; 
+    padding-right: 1rem;
+}
+
+.station-card {
     background-color: #222222;
-    font-family: 'Maitree', serif;
-    padding-top: .25em;
+}
+
+.station-card-header {
+    font-size: 1.5em;
+}
+
+.station-card-header:hover{
+    color: #757E71;
+    cursor: pointer;
+}
+
+/* subway icon color */
+.fa-subway {
+    color: #757E71;
+}
+
+/* arrival times colors */
+.arrival-list-group-item {
+    background-color: #222222;
+    font-size: 1.25em;
+}
+
+.arrival-list-row {
+    min-height: 3.45rem;
+    
+}
+
+.list-group-schedules > a {
+    border-top: 1px solid #111;
+}
+
+/* hover colors and cursors */
+.arrival-list-group-item.linked:hover{
+    color: #757E71;
+    cursor: pointer;
+}
+
+
+/* make cards responsive */
+@media (min-width: 1px) {
+    .card-columns {
+        column-count: 1;
+    }
+}
+
+@media (min-width: 768px) {
+    .card-columns {
+        column-count: 2;
+    }
+}
+
+@media (min-width: 1200px) {
+    .card-columns {
+        column-count: 3;
+    }
 }
 
 /* font larger for arrival minutes */
@@ -94,14 +130,5 @@ hr {
 /* make font much smaller for minutes label in eta row */
 .minutes-label {
     font-size: .6em;
+    margin-top: -.3rem;
 }
-
-/* sets format for hr element between rows */
-.schedule-divider {
-    margin-top: 0;
-    margin-bottom: 0;
-    padding-left: 0;
-    padding-right: 0;
-    border: 0;
-    border-top: 1px solid #111;
-  }

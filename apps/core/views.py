@@ -11,7 +11,7 @@ def etas(request):
         'stops': arrivals,
         'stations': stations,
     }
-    return render(request, 'pages/base_etas.html', context)
+    return render(request, 'pages/base_etas_cards.html', context)
 
 def etas_lookup(request, stn_abbr):
     print('------ viewing ETAs')
@@ -23,4 +23,4 @@ def etas_lookup(request, stn_abbr):
         'stops': arrivals,
         'stations': stations,
     }
-    return render(request, 'pages/base_etas.html', context)
+    return render(request, 'pages/base_etas_cards.html', context)
