@@ -8,10 +8,9 @@ def etas(request):
     stations = bart.station_dict()
 
     context = {
-        'stops': arrivals,
         'stations': stations,
     }
-    return render(request, 'pages/base_etas_cards.html', context)
+    return render(request, 'pages/logged_out.html', context)
 
 def etas_lookup(request, stn_abbr):
     print('------ viewing ETAs')
@@ -23,4 +22,4 @@ def etas_lookup(request, stn_abbr):
         'stops': arrivals,
         'stations': stations,
     }
-    return render(request, 'pages/base_etas_cards.html', context)
+    return render(request, 'pages/etas.html', context)
