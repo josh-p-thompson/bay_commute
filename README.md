@@ -1,6 +1,6 @@
 #### To Dos
-* Handle empty ETAs (e.g., late at night) in API 
-* add oops page
+* Handle empty ETAs (e.g., late at night) in API  ---> need to test
+* Add oops page
 * Accounts with signin and favorite routes
 
 #### Backlog
