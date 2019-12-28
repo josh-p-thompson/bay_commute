@@ -10,7 +10,7 @@ from apps.accounts.models import FavoriteStation
 from django.contrib.auth.models import User
 from apps.core import bart
 
-def log_in(request):
+def login_view(request):
     if request.method == 'POST':
         form = AuthenticationForm(request, request.POST)
         if form.is_valid():
@@ -48,35 +48,6 @@ def logout_view(request):
     logout(request)
     messages.success(request, 'Logged out.')
     return redirect('home_logged_out') 
-
-
-@login_required
-def favorites(request):
-    if request.method == 'POST':
-        print("method is a post")
-        form = FavoriteStationForm(request.POST)
-        print(type(form))
-        if form.is_valid():
-            station = form.save(commit=False)
-            if not FavoriteStation.objects.filter(
-                user_id=request.user,
-                station=station.station, 
-            ):
-                print('save station')
-                station.user = request.user
-                station.save()
-
-    else:
-        form = FavoriteStationForm(instance=request.user)
-
-    # filters for favorited stations by user
-    favorite_stations = FavoriteStation.objects.filter(user=request.user).order_by('station')
-
-    context = {
-        'form': form,
-        'favorite_stations': favorite_stations, 
-    }
-    return render(request, 'accounts/favorites.html', context)
 
 def remove_favorite(request, station_abbr): 
     station = FavoriteStation.objects.filter(
