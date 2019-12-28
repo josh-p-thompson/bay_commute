@@ -11,6 +11,7 @@ from django.contrib.auth.models import User
 from apps.core import bart
 
 def login_view(request):
+    print('------ Attempting Login')
     if request.method == 'POST':
         form = AuthenticationForm(request, request.POST)
         if form.is_valid():
@@ -26,16 +27,22 @@ def login_view(request):
 
 
 def sign_up(request):
+    print('------ Viewing Signup')
     if request.method == 'POST':
         form = SignupForm(request.POST)
+        print('printing form')
+        print(form)
         if form.is_valid():
+            print('form is valid')
             user = form.save()
 
+            print('logging in user')
             # Log-in the user right away
             messages.success(request, 'Account created successfully. Welcome!')
             login(request, user)
             return redirect('home_logged_in')
     else:
+        print('form is invalid')
         form = SignupForm()
 
     context = {
@@ -45,11 +52,13 @@ def sign_up(request):
 
 
 def logout_view(request):
+    print('------ Logging Out')
     logout(request)
     messages.success(request, 'Logged out.')
     return redirect('home_logged_out') 
 
 def remove_favorite(request, station_abbr): 
+    print('------ Removing Favorite')
     station = FavoriteStation.objects.filter(
         user_id=request.user.id,
         station=station_abbr, 
@@ -60,6 +69,7 @@ def remove_favorite(request, station_abbr):
     return redirect(request.META.get('HTTP_REFERER', '/'))
 
 def add_favorite(request, station_abbr): 
+    print('------ Adding Favorite')
     if not FavoriteStation.objects.filter(
         user_id=request.user,
         station=station_abbr, 
