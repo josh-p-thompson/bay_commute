@@ -1,8 +1,35 @@
-{% extends 'base.html' %}
-{% load bootstrap4 %}
+{% extends "base.html" %}
 
-{% block content %}
+{% block main-content %}
 
-{% include "accounts/form_snippet.html" with form_title="Log In" %}
+<div class='container-fluid p-0'>
+    <div class='row no-gutters justify-content-center'>
+        <div class='col'>
+            <div class='card rounded-0 text-center login-card'>
+                <div class='card-header login-card-header'>
+                    <div>Login</div>
+                </div>
+                <div class='card-body mx-auto login-card-body'>
+                    <form action="." method="POST" class='login-form'>
+                        {% csrf_token %}
+                        <input type="text" name="username" class='form-control' autofocus="" autocapitalize="none" autocomplete="username" placeholder='Username' maxlength="150" required="" id="id_username">
+                        <br>
 
-{% endblock %}
+                        <input type="password" name="password" class='form-control' autocomplete="current-password" placeholder='Password' required="" id="id_password">
+                        <br>
+
+                        {% if form.errors %}
+                            <p>Username or Password not correct.</p>
+                        {% endif %}
+
+                    <button type="submit" class="btn btn-primary">Submit</button>   
+                    </form>
+                </div>
+                <div class='card-footer login-card-footer'>
+                    <p>Don't have an account? <a href="{% url 'login' %}">Signup Here</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock main-content %}

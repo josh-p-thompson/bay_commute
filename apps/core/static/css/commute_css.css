@@ -38,7 +38,32 @@ body {
     color: #f5eef1;
 }
 
+.container-fluid {
+    position: relative;
+}
+
 /* CONTENT */
+
+/* logged in floating items */
+
+#favorites-controller {
+    position: fixed;
+    right: 0;
+    z-index: 1;
+    background-color: rgba(0,0,0,.2);
+}
+
+.favorites-controller-item i {
+    color: #f5eef1;
+}
+
+.favorites-controller-item:hover i {
+    color: #757E71;
+}
+
+.favorites-controller-item:hover {
+    background-color: rgba(0,0,0,.75);
+}
 
 /* MODAL */
 .list-item-station-option {

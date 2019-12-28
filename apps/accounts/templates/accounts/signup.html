@@ -1,7 +1,37 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 
-{% block content %}
+{% block main-content %}
 
-{% include "accounts/form_snippet.html" with form_title="Sign Up" %}
+<div class='container-fluid p-0'>
+    <div class='row no-gutters justify-content-center'>
+        <div class='col'>
+            <div class='card rounded-0 text-center signup-card'>
+                <div class='card-header signup-card-header'>
+                    <div>Sign Up</div>
+                </div>
+                <div class='card-body mx-auto signup-card-body'>
+                    <form action="." method="POST" class='signup-form'>
+                        {% csrf_token %}
+                        {% for field in form %}
+                            <!-- {{ field.label_tag }} -->
+                            {{ field }}
+                            <br>
 
-{% endblock %}
+                            {% for error in field.errors %}
+                                {{ error }}
+                                <br>
+                                <br>
+                            {% endfor %}
+
+                        {% endfor %}
+                    <button type="submit" class="btn btn-primary">Submit</button>   
+                    </form>
+                </div>
+                <div class='card-footer signup-card-footer'>
+                    <p>Already have an account? <a href="{% url 'login' %}">Login Here</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock main-content %}

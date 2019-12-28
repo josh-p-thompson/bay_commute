@@ -1,24 +1,21 @@
-import hashlib
-
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import User
+from apps.core import bart
 
-# Custom User class which extends built-in User. Presently, just adds a "bio"
-# and a gravatar method. Feel free to add your own new fields here!
+class FavoriteStation(models.Model): 
+    user = models.ForeignKey(
+        User, 
+        on_delete=models.CASCADE,
+    )
 
-class User(AbstractUser):
+    station_list = [(station['abbr'], station['name']) for station in bart.stations()]
 
-    bio = models.TextField()
+    station = models.CharField(
+        max_length=30, 
+        choices=station_list,
+    )
+    class Meta:
+        unique_together = ["user", "station",]
 
-    def gravatar(self, size=None):
-        GRAVATAR_URL = 'https://gravatar.com/avatar/%s?d=identicon%s'
-        email = str(self.email).strip().lower()
-        digest = hashlib.md5(email.encode('utf-8')).hexdigest()
-
-        if size:
-            size_str = '&s=%i' % size
-        else:
-            size_str = ''
-
-        return GRAVATAR_URL % (digest, size_str)
-
+    def __str__(self):
+        return self.user.username + ': ' + self.station

@@ -12,6 +12,7 @@
 
     <!-- Custom CSS -->
     <link href="{% static 'css/commute_css.css' %}" rel="stylesheet">
+    <link href="{% static 'css/forms_css.css' %}" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Maitree:500&display=swap" rel="stylesheet">
@@ -29,12 +30,13 @@
   <body>
  <!-- NAVBAR -->
     <nav class="navbar navbar-expand navbar-dark navbar-custom">
-        <a class="navbar-brand" href="{% url 'etas' %}">BAY Commute</a>
+        <a class="navbar-brand" href="{% url 'home_logged_out' %}">BAY Commute</a>
     
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
+            {% block nav-items %}
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'etas' %}">Home</a>
+                <a class="nav-link" href="{% url 'home_logged_out' %}">Home</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'login' %}">Login</a>
@@ -42,14 +44,13 @@
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'signup' %}">Signup</a>
             </li>  
+            {% endblock nav-items %}
         </ul>
 
     </nav>
-    <div class='container-fluid p-0'>
-        {% block main %}
-            Placeholder main text
-        {% endblock main %}
-    </div>
+    {% block main-content %}
+        Placeholder main text
+    {% endblock main-content %}
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

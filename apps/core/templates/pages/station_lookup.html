@@ -1,7 +1,18 @@
 {% extends "base.html" %}
 
-{% block main %}
+{% if user.is_authenticated %}
+{% block nav-items %}
+<li class="nav-item">
+        <a class="nav-link" href="{% url 'home_logged_in' %}">Home</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+</li>  
+{% endblock nav-items %}
+{% endif %}
 
+{% block main-content %}
+<div class='container-fluid p-0'>
 <div class='row justify-content-center no-gutters station-card-row'>
     
     {% for abbr, schedules in stops.items %}
@@ -56,4 +67,5 @@
         </div>
     {% endfor %}
 </div>
-{% endblock main %}
+</div>
+{% endblock main-content %}

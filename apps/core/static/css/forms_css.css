@@ -1,0 +1,22 @@
+/*
+    Some nice styles taken from Start Bootstrap:
+    https://startbootstrap.com/snippets/login/
+    MIT License by David Miller
+*/
+
+/* body {
+  background-color: #222222;
+  
+} */
+
+.signup-card, .login-card {
+  background-color: #222222;
+}
+
+.signup-card-header, .login-card-header {
+  font-size: 1.5em;
+}
+
+.signup-form, .login-form {
+  width: 25rem;
+}

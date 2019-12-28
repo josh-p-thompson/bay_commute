@@ -5,15 +5,17 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 
-from apps.accounts.forms import UserEditForm, SignupForm
-from apps.accounts.models import User
+from apps.accounts.forms import FavoriteStationForm, SignupForm
+from apps.accounts.models import FavoriteStation
+from django.contrib.auth.models import User
+from apps.core import bart
 
 def log_in(request):
     if request.method == 'POST':
         form = AuthenticationForm(request, request.POST)
         if form.is_valid():
             login(request, form.get_user())
-            return redirect('home')
+            return redirect('home_logged_in')
     else:
         form = AuthenticationForm()
 
@@ -32,7 +34,7 @@ def sign_up(request):
             # Log-in the user right away
             messages.success(request, 'Account created successfully. Welcome!')
             login(request, user)
-            return redirect('home')
+            return redirect('home_logged_in')
     else:
         form = SignupForm()
 
@@ -45,44 +47,56 @@ def sign_up(request):
 def logout_view(request):
     logout(request)
     messages.success(request, 'Logged out.')
-    return redirect('home')
+    return redirect('home_logged_out') 
 
-
-def view_all_users(request):
-    all_users = User.objects.all()
-    context = {
-        'users': all_users,
-    }
-    return render(request, 'accounts/view_all_users.html', context)
-
-
-def view_profile(request, username):
-    user = User.objects.get(username=username)
-
-    if request.user == user:
-        is_viewing_self = True
-    else:
-        is_viewing_self = False
-
-    context = {
-        'user': user,
-        'is_viewing_self': is_viewing_self,
-    }
-    return render(request, 'accounts/profile_page.html', context)
 
 @login_required
-def edit_profile(request):
+def favorites(request):
     if request.method == 'POST':
-        form = UserEditForm(request.POST, instance=request.user)
+        print("method is a post")
+        form = FavoriteStationForm(request.POST)
+        print(type(form))
         if form.is_valid():
-            form.save()
-            return redirect('home')
+            station = form.save(commit=False)
+            if not FavoriteStation.objects.filter(
+                user_id=request.user,
+                station=station.station, 
+            ):
+                print('save station')
+                station.user = request.user
+                station.save()
+
     else:
-        form = UserEditForm(instance=request.user)
+        form = FavoriteStationForm(instance=request.user)
+
+    # filters for favorited stations by user
+    favorite_stations = FavoriteStation.objects.filter(user=request.user).order_by('station')
 
     context = {
         'form': form,
+        'favorite_stations': favorite_stations, 
     }
-    return render(request, 'accounts/edit_profile.html', context)
+    return render(request, 'accounts/favorites.html', context)
 
+def remove_favorite(request, station_abbr): 
+    station = FavoriteStation.objects.filter(
+        user_id=request.user.id,
+        station=station_abbr, 
+        )
+    station.delete()
 
+    # Redirect to wherever they came from
+    return redirect(request.META.get('HTTP_REFERER', '/'))
+
+def add_favorite(request, station_abbr): 
+    if not FavoriteStation.objects.filter(
+        user_id=request.user,
+        station=station_abbr, 
+    ):
+        FavoriteStation.objects.create(
+            user=request.user, 
+            station=station_abbr
+        )
+
+    # Redirect to wherever they came from
+    return redirect(request.META.get('HTTP_REFERER', '/'))

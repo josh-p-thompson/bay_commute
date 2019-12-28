@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block nav-items %}
+<li class="nav-item">
+    <a class="nav-link" href="{% url 'home_logged_out' %}">Home</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+</li>  
+{% endblock nav-items %}
+
+{% block main-content %}
+
+<div class='container-fluid p-0'>
+    <div id='favorites-controller'>
+        <a data-toggle="modal" data-target="#changeStation" class="nav-link text-reset text-decoration-none favorites-controller-item" href="#"><i class="fas fa-search"></i></a>
+        <a data-toggle="modal" data-target="#addFavorite" class="nav-link text-reset text-decoration-none favorites-controller-item" href="#"><i class="fas fa-plus-circle"></i></a>
+        <a data-toggle="modal" data-target="#removeFavorite" class="nav-link text-reset text-decoration-none favorites-controller-item" href="#"><i class="fas fa-minus-circle"></i></a>
+    </div>
+    <!-- modal for switching station -->
+    <div class="modal fade" id="changeStation" tabindex="-1" role="dialog" aria-labelledby="changeStationLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="list-group list-group-flush">
+                        {% for abbr, name in stations.items %}
+                        <a href="/{{ abbr }}" class="list-group-item list-item-station-option list-group-item-action {% if schedules.0.station_name == name %}active{% endif %}">{{ name }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- modal for adding favorite -->
+    <div class="modal fade" id="addFavorite" tabindex="-1" role="dialog" aria-labelledby="addFavoriteLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="list-group list-group-flush">
+                        {% for abbr, name in stations.items %}
+                        <a href="account/add/{{ abbr }}" class="list-group-item list-item-station-option list-group-item-action {% if schedules.0.station_name == name %}active{% endif %}">{{ name }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- modal for removing favorite -->
+    <div class="modal fade" id="removeFavorite" tabindex="-1" role="dialog" aria-labelledby="removeFavoriteLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="list-group list-group-flush">
+                        {% for station in favorite_stations %}
+                        <a href="account/remove/{{ station.station }}" class="list-group-item list-item-station-option list-group-item-action">{{ station.get_station_display }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class='row justify-content-center no-gutters station-card-row'>
+        {% for abbr, schedules in stops.items %}
+            <div class='col-lg-6 p-small station-col'>
+            <div class="card rounded-0 station-card h-100 border-right-0 border-left-0" >
+    
+                <!-- header -->
+                <div class="card-header station-card-header">
+                    <div>
+                        <i class="fas fa-subway icon-4x"></i> 
+                        <span class='overflow-hidden'>&nbsp;{{ schedules.0.station_name }}</span>
+                    </div>
+                </div>
+    
+                <!-- schedules -->
+                <ul class="list-group list-group-flush list-group-schedules">
+                {% for schedule in schedules %}
+    
+                    <!-- set wrap for collapse -->
+                    {% ifchanged schedule.destination_name %}
+                    <a data-toggle="collapse" href='#collapse-{{ schedules.0.station_abbr }}-to-{{ schedule.destination_abbr }}' role="button" aria-expanded="false" aria-controls="collapse-{{ schedules.0.station_abbr }}-to-{{ schedule.destination_abbr }}" class='text-reset text-decoration-none' >
+                        <li class="list-group-item arrival-list-group-item linked">
+                        {% include 'pages/schedule_snippet.html' %}
+                        </li>
+                    </a>
+                    {% else %}
+                    <div class='collapse' id='collapse-{{ schedules.0.station_abbr }}-to-{{ schedule.destination_abbr }}'>
+                        <li class="list-group-item arrival-list-group-item collapsed">
+                        {% include 'pages/schedule_snippet.html' %}
+                        </li>
+                    </div>
+                    {% endifchanged %}
+                {% endfor %}
+                </ul>
+            </div>
+                
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock main-content %}
