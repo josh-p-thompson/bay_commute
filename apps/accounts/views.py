@@ -31,7 +31,10 @@ def sign_up(request):
     if request.method == 'POST':
         form = SignupForm(request.POST)
         print('printing form')
-        print(form)
+        print(form['username'])
+        print(form['email'])
+        print(form['password1'])
+        print(form['password2'])
         if form.is_valid():
             print('form is valid')
             user = form.save()
@@ -41,6 +44,8 @@ def sign_up(request):
             messages.success(request, 'Account created successfully. Welcome!')
             login(request, user)
             return redirect('home_logged_in')
+        else: 
+            print(form.errors.as_data())
     else:
         print('form is invalid')
         form = SignupForm()
